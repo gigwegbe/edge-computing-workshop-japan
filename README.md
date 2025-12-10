@@ -1,1 +1,1 @@
-# edge-computing-workshop-japan
+# Edge Computing Workshop Japan
