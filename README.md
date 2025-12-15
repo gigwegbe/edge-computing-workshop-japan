@@ -164,9 +164,13 @@ python3 real-time-inference-tflite.py
 
 - Change directory into `visual-language-model`
 
+Run the script:
+
 ```
   python3 deployment-script.py
 ```
+
+Output:
 
 ```
 --- Model Response ---
