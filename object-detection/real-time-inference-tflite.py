@@ -15,7 +15,7 @@ import time
 # Load TFLite model
 # -----------------------------
 print("📦 Loading TFLite model...")
-interpreter = tf.lite.Interpreter(model_path="./models/ei-edge-computing-workshop-2025-object-detection-yolov5-512-14.lite")
+interpreter = tf.lite.Interpreter(model_path="./models/ei.lite")
 interpreter.allocate_tensors()
 print("✅ Model loaded successfully!")
 
@@ -138,7 +138,7 @@ def detect_objects_tflite(frame, threshold=0.45):
     return frame, boxes, scores, classes
 
 
-def run_camera_inference(threshold=0.45, camera_index=0):
+def run_camera_inference(threshold=0.25, camera_index=0):
     """
     Run real-time object detection from webcam using a TFLite model.
     Press 'q' to quit.

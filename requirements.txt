@@ -6,5 +6,6 @@ notebook
 jupyter 
 accelerate
 torch
+torchvision
 transformers
 huggingface_hub

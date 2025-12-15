@@ -5,7 +5,7 @@ from PIL import Image
 
 
 # Load model and processor
-model_id = "LiquidAI/LFM2-VL-450M" # LiquidAI/LFM2-VL-3B  # LiquidAI/LFM2-VL-1.6B
+model_id = "LiquidAI/LFM2-VL-3B" # LiquidAI/LFM2-VL-3B  # LiquidAI/LFM2-VL-1.6B
 model = AutoModelForImageTextToText.from_pretrained(
     model_id,
     device_map="auto",
@@ -16,7 +16,7 @@ processor = AutoProcessor.from_pretrained(model_id, trust_remote_code=True)
 
 
 # ===== LOAD TEST IMAGE =====
-image_path = "./detected/Esp32.683d77uh.ingestion-76f45fffcf-nn2ld_detections.jpg"
+image_path = "./detected/IMG_4826_detections.jpg"
 image = Image.open(image_path)
 if image.mode != "RGB":
     image = image.convert("RGB")
@@ -30,19 +30,35 @@ conversation = [
             {"type": "image", "image": image},
             {
                 "type": "text",
-                "text": """You are an expert electronics board inspector. Examine the image and verify whether the detected object(s) and their reported confidence scores align with what you observe in the board.
-Return the result strictly as JSON in the format below (no extra text, only JSON):
-{
-  "short_description": "<>",
-  "confidence_level": "<>",
-  "colors": "<Give one color>",
-  "size": "<Give one size e.g small, medium, large>"
-}
-"""
+                "text": (
+                    "You are an expert toy inspector. Examine the image and identify each individual toy.\n\n"
+                    "For every visible toy, assign a unique ID in the form: bear_1, bear_2, etc.\n\n"
+                    "For each toy, determine:\n"
+                    "- The dominant color(s)\n"
+                    "- A concise visual description (type, outfit, accessories)\n\n"
+                    "Return the result strictly as JSON (no extra text, no explanations) using the schema below:\n\n"
+                    "{\n"
+                    '  "objects": {\n'
+                    '    "bear_1": {\n'
+                    '      "colors": ["string"],\n'
+                    '      "description": "string"\n'
+                    "    },\n"
+                    '    "bear_2": {\n'
+                    '      "colors": ["string"],\n'
+                    '      "description": "string"\n'
+                    "    }\n"
+                    "  }\n"
+                    "}\n\n"
+                    "Rules:\n"
+                    "- Only include toys that are clearly visible.\n"
+                    "- Do not guess unseen details.\n"
+                    "- Base all descriptions strictly on visual evidence."
+                )
             },
         ],
     },
 ]
+
 
 # Generate Answer
 inputs = processor.apply_chat_template(
