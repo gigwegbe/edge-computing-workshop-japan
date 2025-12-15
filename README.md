@@ -30,6 +30,8 @@ python3 -m venv edge-env
 pip install -r requirements.txt
 ```
 
+#### Deployment of Image Classification Models Edge Devices and Laptop
+
 - Change the directory to `image-classification`
 
 ```
@@ -153,12 +155,12 @@ python3 real-time-inference-tflite.py
 
 ![Welcome Image](./asset/vlm-prompting.png)
 
-- Prompting Visual Language Model (VLM) Colab - [VLM Prompt Engineering](https://colab.research.google.com/drive/1uMbCadRY-ILQtsJ5DS2l1qAYWNMg_Kv9?usp=sharing)
-- Running it locally on your laptop - [Link](https://github.com/gigwegbe/edge-computing-workshop-kigali/blob/main/visual-language-model/deployment-script.py)
+- Prompting Visual Language Model (VLM) Colab - [VLM Prompt Engineering](https://colab.research.google.com/drive/1G3I3BxZzfv8oOc3qpJL-4kL95WXzXuDu?usp=sharing)
+- Running it locally on your laptop - [Link](https://github.com/gigwegbe/edge-computing-workshop-japan/blob/main/vision-language-model/deployment-script.py)
 
 #### Deploying VLM on Edge Device
 
-![Welcome Image](./asset/jetson-orin.jpg)
+![Welcome Image](./asset/jetson-device.jpg)
 
 - Change directory into `visual-language-model`
 
